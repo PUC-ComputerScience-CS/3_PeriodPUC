@@ -1,0 +1,24 @@
+Código binário puro  -->  Código paridade par
+
+		      P
+
+P = bit de redundância
+
+01101110 1 
+ 8 bits  P
+
+código de paridade --> PAR --> número par de '1's
+
+$s0: 000_____________01110
+     000______________0001
+$t0:
+
+Loop (32x)
+	andi $t0, $s0, 1	#contador de iterações 
+	bnez $t0, conta
+	j Loop
+
+conta: addi $t1, $t1, 1	# contador de '1's
+
+	j Loop
+

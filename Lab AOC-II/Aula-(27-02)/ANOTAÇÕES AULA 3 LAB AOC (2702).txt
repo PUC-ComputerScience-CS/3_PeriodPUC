@@ -1,0 +1,11 @@
+ANOTAÇÕES AULA 3 LAB AOC (27/02)
+------------------------------------------------------
+
+$a0 -> contem o char a ser buscado no string
+cu -> Josér jomxs
+$a1 -> Endereço de $s1 (string)
+
+>> lb (load byte) = lw MAS ele só carrega 1 byte em vezes de vários como o lw (load word)
+ex: lb $t0, 0($a1)
+
+sb -> store bye, sb $t0, 0($a1) guarda o t0 em a1
