@@ -1,0 +1,58 @@
+﻿/* -O computador 'pensa' em um número secreto e aleatório
+-O jogador tenta adivinhar o numéro, digitando palpites
+-A cada palpite, o programa informa se o numero secreto é maior, menor ou se é o palpit correto
+-O jogo continua ate o jogador acertar o número, e então exibe uma mensagem de vitória e
+ o número de tenativas usadas
+*/
+
+using System;
+
+class Program{
+    static void Main(){
+        Random gerador = new Random();
+        int numeroSecret = gerador.Next(1, 101);
+        int palpite = 0;
+        int tentativa = 0;
+
+       while(palpite != numeroSecret){
+            Console.Write("\nDigite seu palpite: ");
+            string palpiteee = Console.ReadLine(); 
+
+            palpite = int.Parse(palpiteee); 
+
+            if(palpite > numeroSecret){
+                Console.Write("\nO seu palpite foi maior que o numero sorteado. Tente novamente!");
+            }
+            if(palpite < numeroSecret){
+                Console.Write("\nO seu palpite foi menor que o numero sorteado. Tente novamente!");
+            }
+
+            tentativa++;
+       }
+       Console.Write("\nPARABENS!! Você acertou o numero sorteado!!");
+       Console.WriteLine($"\nVocê teve {tentativa} tentativas!!");
+    }
+}
+
+// using System;
+
+// class Program{
+//     static void Main(){
+//         Console.Write("Digite um valor: ");
+//         string numeroUsuario = Console.ReadLine();
+
+//         // Converte a string para inteiro
+//         int numUser = int.Parse(numeroUsuario);
+
+//         // Verifica se o número é positivo, negativo ou zero
+//         if (numUser > 0){
+//             Console.WriteLine("Número positivo");
+//         }
+//         else if (numUser < 0){
+//             Console.WriteLine("Número negativo");
+//         }
+//         else{
+//             Console.WriteLine("Número igual a 0");
+//         }
+//     }
+// }

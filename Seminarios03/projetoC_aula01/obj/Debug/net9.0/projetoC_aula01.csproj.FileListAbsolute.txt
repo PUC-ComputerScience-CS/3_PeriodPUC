@@ -1,0 +1,14 @@
+C:\Users\1519529\projetoC_aula01\bin\Debug\net9.0\projetoC_aula01.exe
+C:\Users\1519529\projetoC_aula01\bin\Debug\net9.0\projetoC_aula01.deps.json
+C:\Users\1519529\projetoC_aula01\bin\Debug\net9.0\projetoC_aula01.runtimeconfig.json
+C:\Users\1519529\projetoC_aula01\bin\Debug\net9.0\projetoC_aula01.dll
+C:\Users\1519529\projetoC_aula01\bin\Debug\net9.0\projetoC_aula01.pdb
+C:\Users\1519529\projetoC_aula01\obj\Debug\net9.0\projetoC_aula01.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\1519529\projetoC_aula01\obj\Debug\net9.0\projetoC_aula01.AssemblyInfoInputs.cache
+C:\Users\1519529\projetoC_aula01\obj\Debug\net9.0\projetoC_aula01.AssemblyInfo.cs
+C:\Users\1519529\projetoC_aula01\obj\Debug\net9.0\projetoC_aula01.csproj.CoreCompileInputs.cache
+C:\Users\1519529\projetoC_aula01\obj\Debug\net9.0\projetoC_aula01.dll
+C:\Users\1519529\projetoC_aula01\obj\Debug\net9.0\refint\projetoC_aula01.dll
+C:\Users\1519529\projetoC_aula01\obj\Debug\net9.0\projetoC_aula01.pdb
+C:\Users\1519529\projetoC_aula01\obj\Debug\net9.0\projetoC_aula01.genruntimeconfig.cache
+C:\Users\1519529\projetoC_aula01\obj\Debug\net9.0\ref\projetoC_aula01.dll
