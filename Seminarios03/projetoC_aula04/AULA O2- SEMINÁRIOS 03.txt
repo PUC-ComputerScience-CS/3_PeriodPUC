@@ -1,0 +1,83 @@
+AULA O2- SEMINÁRIOS 03
+----------------------------------------------------
+
+DESAFIO 01:
+
+->JOGO PAR OU ÍMPAR: Crie um programa que permita o usuário jogar "par ou ímpar" contra o computador.
+
+-O programa deve solicitar que escolha par ou impar;
+-Em seguida, pedir o usuário informe um número inteiro;
+-Soma-se os dois números e verifica se o resultado é par ou ímpar.
+
+CÓDIGO:
+
+using System;
+
+class Program{
+    static void Main(){
+        Random gerador = new Random();
+        int numeroSecret = gerador.Next(1, 101);
+
+        string palpite;
+
+        Console.Write("\nDigite seu palpite: ");
+        palpite = Console.ReadLine(); 
+
+        Console.Write("\nDigite um numero inteiro: ");
+        string numUsu = Console.ReadLine();
+
+        int numUsuario = int.Parse(numUsu);
+
+        int soma = numUsuario + numeroSecret;
+
+        if(numUsuario == null){
+            Console.Write("Digite um valor existente...");
+            Environment.Exit(0);
+        }
+
+        if(soma % 2 == 0){
+            Console.WriteLine($"\n {soma} = {numUsuario} + {numeroSecret} || O resultado da soma deu um número PAR!!");
+        }
+        if(soma % 2 == 1){
+            Console.WriteLine($"\n {soma} = {numUsuario} + {numeroSecret} || O resultado da soma deu um número ÍMPAR!!");
+        }
+
+        if(palpite == "par" && soma % 2 == 0 || palpite == "impar" && soma % 2 == 1){
+            Console.Write("PARABENS!! Voce acertou!!");
+        }
+        else{
+            Console.Write("\nOps...Voce errou...Tente novamente");
+        }
+    }
+}
+
+----------------------------------------------------
+
+DESAFIO 02:
+
+-> SIMULADOR DE DADOS: Neste quadro, vamos simular lançamentos de dados de 6 faces e coletar algumas estatísticas simples:
+
+-Peça ao usuário quantas vezes o dado deve ser lançado
+-Lance o dado (isto é, gere um número aleatório de 1 a 6) essa quantidade de vezes
+-Exiba todos os resultados dos lançamentos em sequência
+-Ao final, mostre quantas vezes cada face apareceu
+
+CÓDIGO:
+
+using System;
+
+class Program{
+    static void Main(){
+        //vezes que o dado será lançado
+        Console.Write("Quantas vezes o dado sera lançado?(digite um numero inteiro): ");
+        string vezesAux = Console.ReadLine(); 
+        int vezes = int.Parse(vezesAux);
+
+        for(int i=1; i <= vezes; i++){
+            //valor do resultado
+            Random num = new Random();
+            int resultado = num.Next(1, 20);
+            Console.WriteLine($"Rolagem {i}: {resultado}\n");
+        }
+    }
+}

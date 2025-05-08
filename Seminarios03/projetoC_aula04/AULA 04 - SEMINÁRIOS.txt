@@ -1,0 +1,167 @@
+AULA O4- SEMINÁRIOS 03
+----------------------------------------------------
+
+Com os conceitos de hoje (métodos, arrays, strings) estamos prontos para pensar no nosso projeto final: o Jogo da Forca no console. 
+Vamos aproveitar os últimos minutos desta aula para planejar como será a implementação, dividindo em etapas lógicas. Na próxima aula,
+vamos programá-lo passo a passo.
+
+Regras do jogo da forca (resumo): O computador deve escolher uma palavra secreta, e o jogador vai tentando adivinhar letras.
+ A cada letra errada, o jogador “perde” uma vida (tentativa). Se o jogador revelar todas as letras da palavra antes de esgotar
+  as tentativas, ele vence; se as tentativas acabarem primeiro, ele perde. Em modo texto, podemos simplesmente informar o número de
+   tentativas restantes e mostrar a palavra com os espaços preenchidos conforme as letras forem descobertas.
+
+Etapas para implementar:
+	1.	Escolha da palavra secreta: Podemos ter uma lista (array ou List<string>) de palavras possíveis no programa e selecionar uma 
+    aleatoriamente com Random. Para simplificar, podemos começar com uma palavra fixa para testar a lógica e depois adicionar aleatoriedade.
+	2.	Configuração inicial: Criar um array de caracteres para representar o estado atual das letras descobertas. Por exemplo, se a
+     palavra é “MACA”, podemos ter um array {'_', '_', '_', '_'} no início, indicando que nenhuma letra foi revelada ainda.
+	3.	Loop de jogo: Enquanto houver tentativas disponíveis e a palavra não estiver totalmente descoberta:
+	•	Mostrar o estado atual (ex: “_ _ _ _”) e o número de tentativas restantes.
+	•	Pedir ao jogador que chute uma letra.
+	•	Verificar se a letra já foi tentada (podemos manter uma lista de letras já chutadas para não repetir).
+	•	Verificar se a letra existe na palavra:
+	•	Se sim, revelar todas ocorrências dessa letra no array de estado (substituir ‘_’ pela letra nas posições corretas).
+	•	Se não, decrementar o contador de tentativas (e talvez informar letras erradas já chutadas).
+	4.	Fim do jogo: Verificar se o jogador venceu (todas letras reveladas) ou perdeu (tentativas chegaram a 0). Mostrar a palavra 
+    completa e uma mensagem adequada.
+
+Podemos escrever alguns métodos para ajudar:
+	•	Um método para verificar se a palavra está completa (se não há mais ‘_’ no array de estado).
+	•	Um método para revelar letras dada a palavra e o chute (atualizando o array de estado e retornando verdadeiro/falso se acertou).
+	•	Talvez um método para escolher palavra aleatória de uma lista.
+
+
+------------- Regras
+1. O jogo escolhe aleatoriamente uma palavra 
+   em maiúsculas de um dicionário interno com ≥ 10 itens.
+   Não vale uma palavra fixa.
+2. Exibe o “painel” da palavra como _ _ _ _ 
+   (com espaços) e o contador de erros restantes (6).
+3. Lê uma letra por tentativa (Console.ReadKey(true)).
+   Mostre a letra lida depois.
+4. Se a letra já foi tentada, avise e não desconta tentativa.
+   Lista de tentadas visível.
+5. Se a letra existe, revela todas ocorrências.
+   Ex.: “BANANA” e chute A → _ A _ A _ A.
+6. Se erra, decrementa contador; ao chegar a 0, 
+    exibe “Você perdeu” e mostra a palavra.
+7. Quando todas as letras forem reveladas, 
+     exibe “Parabéns” e número de erros usados.
+8. Após vitória/derrota, pergunta “Jogar de novo? (S/N)”; 
+     se “S” reinicia com nova palavra.
+   Deve resetar estado.
+
+
+>>CÓDIGO:
+
+using System;
+
+class JogoForca{
+    static void Main(){
+        List<string> personagens = new List<string>{"JOUI", "ARTHUR", "THIAGO", "VERISSIMO", "LIZ", "BALU", "KAISER", "AGATHA", "CRIS", "ARNALDO"};
+        bool jogarNovamente = true;
+
+        while(jogarNovamente){
+            string palavraSecret = PalavraAleatoria(personagens);
+            char[] espaco = new string('_', palavraSecret.Length).ToCharArray(); //.ToCharArray() = Converte a string em um vetor de caracteres (char[])
+            List<char> tentativas = new List<char>(); //Lista de tentativa q guarda os caracteres das tentativas
+            List<char> tentErradas = new List<char>(); //Lista de tentativa q guarda os caracteres das tentativas ERRADAS
+            int totalTent= 10; //quantas tentativas o usuario tem
+            int quantTent = totalTent;
+
+            while(quantTent > 0 && !palavraCompleta(espaco)){
+                Mostra(espaco, tentativas, tentErradas, quantTent); 
+
+                Console.Write("Digite uma letra: ");
+                char letra = char.ToUpper(Console.ReadKey(true).KeyChar); //transforma letra min em mai
+                //ReadLine p/ strings e ReadKey p/ char // KeyChar extrai o caractere real da tecla que foi pressionada.
+                Console.WriteLine($"\nLetra escolhida: {letra}");
+
+                if(tentativas.Contains(letra) || tentErradas.Contains(letra)){
+                    Console.Write("\nVocê já tentou essa letra antes...");
+                    continue; //pula pro proximo if
+                }
+
+                if(!char.IsLetter(letra)) { //caso o usuario não use letras
+                    Console.WriteLine("\nPara jogar forca usamos letras!! ¬_¬");
+                    continue;
+                }
+
+                if(Revela(palavraSecret, letra, espaco)){
+                    tentativas.Add(letra); //adiciona a letra na lista de tentativas corretas
+                }
+                else{ //se n estiver correta coloca na lista de tent. erradas
+                    tentErradas.Add(letra);
+                    quantTent--;
+                }
+            }
+
+            if(palavraCompleta(espaco)){ //mensagem vitoria
+                int Chutes = tentativas.Count + tentErradas.Count;
+                Console.Write("PARABENS!! Voce sobreviveu a forca!!");
+                Console.WriteLine($"Voce cometeu {totalTent - quantTent} erro(s) e descobriu a palavra em {Chutes}!!");
+            }
+            else{ //mensagem derrota
+                Console.Write("Puts...Parece que alguem não sobreviveu a revolução francesa hoje...Quem sabe outro dia >;P");
+                Console.WriteLine($"\nA palavra correta era: {palavraSecret}!\n");
+            }
+
+            jogarNovamente = ContinuaJogo();
+        }
+    }
+
+    static void Titulo(){
+        Console.Write("\n ==== JOGO DA FORCA DE ORDEM PARANORMAL ==== \n");
+        Console.WriteLine();
+    }
+
+    //o comp. escolhe a palavra aleatoria a partir do indice da lista
+    static string PalavraAleatoria(List<string> personagens){
+        Random gerador = new Random();
+        int indice = gerador.Next(personagens.Count);
+        return personagens[indice];
+    }
+
+    //verifica se a palavra ja esta completa
+    static bool palavraCompleta(char[] espaco){
+        foreach (char i in espaco){//para cada c no espaco(underline)
+            if (i == '_')
+                return false;
+        }
+        return true;
+    }
+
+    // mostra o estado atual
+    static void Mostra(char[] espaco, List<char> tentativas, List<char> tentErradas, int quantTentativa){
+        Console.Clear();
+        Titulo();
+        Console.WriteLine("\nPalavra: " + string.Join(" ", espaco));
+        Console.WriteLine();
+        Console.WriteLine("Tentativas restantes: " + quantTentativa);
+        Console.WriteLine();
+        Console.WriteLine("Letras ja usadas: " + string.Join(", ", tentativas));
+        Console.WriteLine();
+        Console.WriteLine("Letras erradas: " + string.Join(", ", tentErradas));
+        Console.WriteLine();
+        
+    }
+
+    //revela a letra das palavras conforme o usuario vai tentando
+    static bool Revela(string personagem, char letra, char[] espaco){
+        bool correto = false;
+        for (int i = 0; i < personagem.Length; i++){
+            if (personagem[i] == letra){
+                espaco[i] = letra;
+                correto = true;
+            }
+        }
+        return correto;
+    }
+
+    //verifica se o usuario quer continuar o jogo
+    static bool ContinuaJogo(){
+       Console.Write("\nDeseja continuar jogando? (S/N): ");
+       string continua = Console.ReadLine().ToUpper();
+       return continua == "S";
+    }
+}

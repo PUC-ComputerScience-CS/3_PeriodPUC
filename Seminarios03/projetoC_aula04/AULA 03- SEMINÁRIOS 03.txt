@@ -1,0 +1,103 @@
+AULA O3- SEMINÁRIOS 03
+----------------------------------------------------
+
+DESAFIO 01:
+
+-> JOGO DE PRDRA PAPEL OU TESOURA: O programa deve apresentar as opções e após a escolha o computador deve escolher aleatoriamente e
+                                    após a escolha, a comparação deve ser feita que nem no jogo. E deve mostrar uma mensagem de vitória
+                                    caso tenha vencido, ou não.
+                                
+                                Regras:
+                                
+                                -Pedra vence tesoura;
+                                -Tesoura vence papel;
+                                -Papel vence pedra.
+>>CÓDIGO PROFESSOR
+
+        Random rng = new Random();
+
+        Console.WriteLine("Jokenpô");
+        Console.WriteLine("Escolha uma opção: [0] Pedra, [1] Papel [2] Tesoura");
+        
+        int jogador = int.Parse(Console.ReadLine());
+        if(jogador < 0 || jogador > 2){
+            Console.WriteLine("Escolha inválida!");
+            return;
+        }
+
+        int computador = rng.Next(0, 3);
+
+        sting[] opcoes = {"Pedra". "Papel", "Tesoura"};
+        Console.WriteLine($"Você escolheu: \n {opcoes[jogador]}");
+
+        if(jogador == computador){
+            Console.WwriteLine("Empate");
+        } else if(
+            (jogador == 0 && computador == 2) ||
+            (jogador == 1 && computador == 0) ||
+            (jogador == 2 && computador == 1) ||) {
+            Console.WriteLine("Você venceu!");
+        }else
+
+----------------------------------------------------------------------------------
+>>TEORIA DE C# <<
+
+-> FUNÇÕES: 
+
+Console.WriteLine(Soma(1,6)); //chamada da função dentro do "printf"
+
+int Soma(int a, int b){
+  c = a+b;
+  return c;
+}
+
+imprimirLinha(); //chamada da função
+
+void imprimirLinha(){
+    Console.WriteLine("============================\n");
+}
+
+douvle CalcularMedia(double[] valores){
+    double soma = 0;
+    foreach(double v in valores){ //foreach - função automatica, for do tamanho correto dos valores
+        soma += v;
+        //soma = soma + v;
+        //ou Soma(soma, v);
+    }
+    return soma / valores.Lenght
+}
+
+double[] amostra = {2.5, 3.0, 4.5, 1.0};
+double media = CalcularMedia(amostra);
+
+Concole.WriteLine($"Media = {media}");
+
+-> VETORES
+
+int[] numeros = new int[5];
+//cria um vetor de 5 inteiros, iniciando todos com 0
+
+//duas maneiras de construção de string:
+string[] frutas = new string[] {"Maça", "Banana", "Caju"};
+string[] frutas_2 =  {"Maça", "Banana", "Caju"};
+
+//frutas[1] = frutas_2[1]
+
+int[] valores = new int[5];
+Console.WriteLine("Digite 5 numeros inteiros: ");
+for(int i=0; i<5; i++){
+    Console.WriteLine($"Numero {i+1}: ");
+    valores[i] = int.Parse(Console.ReadLine());
+}
+
+Console.WriteLine("Os numeros na ordem inversa sao: ");
+for(int i=4; i>= 0; i--){
+    Console.WriteLine({valores[i]} = {""});
+}
+
+-> LISTA em C#
+
+List<string> nome = new List<string>() //neste ponto aqui estamos trabalhando com objeto
+
+nome.Add("Ana");
+nome.Add("Jorge");
