@@ -1,0 +1,10 @@
+PONTOS FLUTUANTES - aula Lab. AOCII - 15.05.2025
+/* C */
+int a = 20;
+float f = 10.5;
+float g = 20.1;
+
+a = (int) f; 	--> cvt.w.s
+f = (float) a;	--> cvt.s.w
+
+ - Saltos condicionais são feitos em duas linhas de código, uma para comparação e outra para o desvio
