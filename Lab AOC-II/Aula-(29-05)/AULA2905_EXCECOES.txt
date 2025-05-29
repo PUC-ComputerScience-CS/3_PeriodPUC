@@ -1,0 +1,43 @@
+AULA 29/05 - LAB AOC-II
+--------------------------------------------
+
+>>EXCESSÕES E INTERRUPÇÕES
+
+-> Somente para situações previstas pelo programador são tratadas pelos saltos e desvios
+-> Interrupções são geralmente tratadas pelo hardware já que são eventos inesperados, que o programador não consegue prever
+
+INTERRUPÇÕES VETORIZADAS:
+
+duas exceções:
+->Instrução indefinida - inst. que não possui um opCode definido ou está incorreto
+->Overflow aritmético
+
+-> Para essas exceções o processador salva o end da inst q causou a exceção, guarda o motivo da exceção e depois desvia do programa para um endereço determinado para cada exceção
+
+-. Em uma pipeline as exceções são bloqueadas
+
+--------------------------------------------
+
+>>ANOTAÇÕES DA CLARA:
+
+Exceções e interrupções
+
+Apenas situações previstas pelo programador são tratadas com saltos e desvios 
+
+interrupção --> evento inesperado associado ao hardware 
+
+Interrupções vetorizadas 
+- instrução indefinida e overflow aritmético 
+
+Quando isso ocorre, o processador interrompe as instruções, salva o endereço da instrução causadora em um contador de programa de exceção (EPC), configura o registrador e desvia 
+
+Vetor de interrupções (MIPS)
+- em cada endereço do vetor são armazenadas até 8 instruções (32 bytes)
+
+tratamentos de instruções em um pipeline --> ele basicamente é bloqueado 
+
+Rotina de tratamento de interrupção
+- backup do conteúdo dos registradores,
+- trata o evento E\S
+- recupera o conteúdo dos registradores
+- retorna para o endereço EPC + 4
